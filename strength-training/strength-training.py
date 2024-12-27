@@ -5,7 +5,7 @@ weight = int(weight)
 def main(weight):
     
     if weight == 0:
-        raise ValueError("cannot calculate 0")
+        raise ValueError("cannot calculate 0 weight")
 
     def round_to_nearest_five(x):
         return round(x / 5) * 5
