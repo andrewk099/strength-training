@@ -72,10 +72,6 @@ class StrengthPlanCreator:
         self.rep_max_07 = tk.DoubleVar()
         rep_max_7 = tk.Entry(root, font=16, width=4, textvariable=self.rep_max_07).grid(row=7, column=6)
 
-        status_label = tk.Label(root, text="")
-        status_label.grid(row=9, column=1, sticky="w")
-        status_label.config(text="Entry saved to file!")
-
         save_button = tk.Button(root, text="Save Entry", command=self.save_entry_to_file)
         save_button.grid(row=8, column=1, sticky="w")
 
@@ -112,6 +108,10 @@ class StrengthPlanCreator:
                 for x in line:
                     file.write((x))
 
+        status_label = tk.Label(root, text="")
+        status_label.grid(row=9, column=1, sticky="w")
+        status_label.config(text="Entry saved to file!")
+        
 root = tk.Tk()
 StrengthPlanCreator(root)
 root.mainloop()
