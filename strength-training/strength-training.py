@@ -9,6 +9,10 @@ class StrengthPlanCreator:
 
         self.save_button = tk.Button(root, text="Save Entry", command=self.save_entry_to_file).grid(row=0, column=0, sticky="w")
 
+        self.control = tk.IntVar(root, 0)
+        self.weight_option1 = tk.Radiobutton(root, font=16, text="Fast Progression", variable=self.control, value=1).grid(row=0, column=1)
+        self.weight_option2 = tk.Radiobutton(root, font=16, text="Slow Progression", variable=self.control, value=2).grid(row=0, column=2)
+
         self.str_exercise_entries = []
         self.exercise_entries = []
         max_range = 8
@@ -172,7 +176,11 @@ class StrengthPlanCreator:
 
     def calculate_weights(self, weight):
         weight_list = [weight] * 8
-        multipliers = [.85, .875, .9, .925, .95, .975, 1, 1.025]
+        multipliers = []
+        if self.control.get() == 1:
+            multipliers = [.875, .9, .925, .95, .975, 1, 1.025, 1.05]
+        elif self.control.get() == 2:
+            multipliers = [.85, .875, .9, .925, .95, .975, 1, 1.025]
         return self.round_list_to_nearest_five(list(map(lambda x, y : x * y, weight_list, multipliers)))
 
     def create_line(self, exercise, sets_reps, rep_max):
